@@ -1,5 +1,5 @@
-#ifndef ANGLES_API
-#define ANGLES_API
+#ifndef ANGLES_API_H
+#define ANGLES_API_H
 
 /* IAS Library Includes */
 #include "ias_logging.h"
@@ -38,4 +38,4 @@ int get_frame
     ANGLES_FRAME *frame                     
 );
 
-#endif // ANGLES_API
+#endif // ANGLES_API_H
