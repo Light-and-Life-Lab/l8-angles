@@ -17,7 +17,7 @@ l8angles-1.0.0-cp310-cp310-macosx_11_0_arm64.whl
 
 Similarly, Python 3.10 on Linux would look like:
 
-lll_gas_corr_lib-0.1.4-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+l8angles-1.0.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
 
 If you are unsure of your Python version, run:
 
