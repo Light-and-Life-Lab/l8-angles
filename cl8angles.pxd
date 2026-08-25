@@ -43,7 +43,3 @@ cdef extern from "l8_angles.h":
                   double* sun_az, double* sun_zn,
                   double* sat_az, double* sat_zn)
 
-cdef extern from "angles_api.c":
-    int get_frame(const IAS_ANGLE_GEN_METADATA* metadata,
-                  int band_index, ANGLES_FRAME* frame)
-
