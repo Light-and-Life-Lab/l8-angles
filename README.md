@@ -5,14 +5,49 @@ per-pixel solar and sensor azimuth and zenith angles, from Angle Coefficient Fil
 (https://www.usgs.gov/core-science-systems/nli/landsat/solar-illumination-and-sensor-viewing-angle-coefficient-files)
 
 ## Installation
-Since this package depends on C code, it is recommended that you either
-build the package with conda-build, using the recipe at (https://github.com/DHI-GRAS/py-l8angles-conda)
-or install with the latest binaries from the DHI-GRAS conda channel:
+### Linux and MacOS
+
+Pre-built wheels for **Linux** and **macOS** are published on the [Releases page](https://github.com/Light-and-Life-Lab/l8-angles/releases) for each tagged version. 
+
+#### 1. Find the right wheel
+
+Each release lists several `.whl` files, one per combination of Python version and platform. Each wheel has the format {distribution}-{version}-{python tag}-{abi tag}-{platform tag}.whl. Identify the wheel that matches your machine, for example if you are running with Python 3.10 on MacOS 11, the wheel name will look like:
+
+l8angles-1.0.0-cp310-cp310-macosx_11_0_arm64.whl
+
+Similarly, Python 3.10 on Linux would look like:
+
+lll_gas_corr_lib-0.1.4-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+
+If you are unsure of your Python version, run:
+
+```bash
+python3 --version
 
 ```
-conda config --add channels DHI-GRAS
-conda install py-l8angles
+
+The `cp3XX` in the filename should match your major/minor version (e.g. Python 3.11 -> `cp311`).
+
+#### 2. Install directly from the release URL
+
+Right-click the appropriate file on the [Releases page](https://github.com/Light-and-Life-Lab/Atmospheric_Gas_Correction_Library/releases)](https://github.com/Light-and-Life-Lab/l8-angles/releases) to copy its link, then run the following from the terminal:
+
+```bash
+pip install <paste-the-wheel-url-here>
+
 ```
+
+For example:
+
+```bash
+pip install https://github.com/Light-and-Life-Lab/l8-angles/releases/download/v1.0.0/l8angles-1.0.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+
+```
+
+```
+
+## Windows
+Native Windows wheels are not built or supported. Windows users should install and run this library from within **[WSL (Windows Subsystem for Linux)](https://learn.microsoft.com/en-us/windows/wsl/install)**, then follow the Linux installation instructions above from inside your WSL environment.
 
 ## Usage
 The package exposes a single function `calculate_angles`, taking the following parameters:
