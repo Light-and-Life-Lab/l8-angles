@@ -1,19 +1,7 @@
-#----------------------------------------------------------------------------
-# Make options
-#----------------------------------------------------------------------------
-SHELL = cmd
-#----------------------------------------------------------------------------
-# Set up the compiler options.
-#----------------------------------------------------------------------------
-DBOPTS  = /Zi /c
-OPTS    = /O2 /favor:INTEL64 /c
-CC 	= cl
-#-------------------------------------------------------
-# Define the executable(s), the pdf(s), and the html(s).
-#-------------------------------------------------------
-LIB   = l8ang.lib
+OPTS    = -g -Wall -O2 -march=nocona -mfpmath=sse -msse2 -fPIC
+CC = gcc
 
-DBLIB = l8ang_db.lib
+LIBS   = libl8ang.a
 
 INCS =	\
 	ias_angle_gen_distro.h \
@@ -28,9 +16,6 @@ INCS =	\
 	ias_odl.h \
 	ias_satellite_attributes.h
 
-#---------------------------------------------------------
-# Define the source code object files for each executable.
-#---------------------------------------------------------
 SRC	= \
 	ias_angle_gen_calculate_angles_rpc.c \
 	ias_angle_gen_read_ang.c \
@@ -57,31 +42,15 @@ SRC	= \
 	landsat8.c \
 	lablib3.c
 
-OBJ	= $(SRC:.c=.obj)
+OBJ	= $(SRC:.c=.o)
 
-.PHONY: clean obj dbobj
+all: $(LIBS) 
 
-#------------------------------------------------------------------------------
-# Targets for each executable. 
-#------------------------------------------------------------------------------
-all: $(LIB)
+libl8ang.a: $(OBJ)
+	ar -r $@ $(OBJ) 
 
-debug: $(DBLIB)
-
-$(LIB): obj 
-	lib /out:$@ $(OBJ) 
-
-$(DBLIB): dbobj
-	lib /out:$@ $(OBJ)
-
-#---------------------------------------
-# Target to distribute the executable(s)
-#---------------------------------------
-obj:
-	$(CC) $(OPTS) $(SRC)
-
-dbobj:
-	$(CC) $(DBOPTS) $(SRC)
+.c.o:
+	$(CC) $(OPTS) -c $< -o $@
 
 clean:
-	rm -f *.obj *.lib *.pdb
+	/bin/rm -f *.o *.a 

@@ -1,69 +1,27 @@
-#----------------------------------------------------------------------------
-# Make options
-#----------------------------------------------------------------------------
-SHELL = cmd
+OPTS    = -g -Wall -O2 -march=nocona -mfpmath=sse -msse2 -fPIC
+CC = gcc
 
-#----------------------------------------------------------------------------
-# Set up the compiler options.  
-#----------------------------------------------------------------------------
-OPTS	= /O2 /favor:INTEL64
-DBOPTS  = /Zi
-CC 	= cl
+LIBS = -L./ias_lib/ -ll8ang -lm
 
-#---------------------------------------------------------
-# Define the source code object files for each executable.
-#---------------------------------------------------------
+INCS =	\
+	-I./ias_lib/ \
+	-I./
+
 SRC	= \
 	l8_angles.c \
 	angles_api.c 
 
-EXEC 	= \
-	l8_angles.exe
+OBJ	= $(SRC:.c=.o)
 
-DBEXEC	= \
-	l8_angles_db.exe
+all: l8_angles
 
-LIB	= \
-	ias_lib\l8ang.lib
+l8_angles: ias_lib/libl8ang.a $(OBJ)
+	$(CC) $(OPTS) $(INCS) -o $@ $^ $(LIBS) 
 
-DBLIB	= \
-	ias_lib\l8ang_db.lib
-
-#------------------------------------------------------------------------------
-# Targets for each executable. 
-#------------------------------------------------------------------------------
-all: exec
-
-debug: db_exec
-
-dll: dll
-
-setup:
-	cd "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build" &&\
-	vcvarsall.bat x86_amd64; &&\
-	set INCLUDE=%INCLUDE%C:\Users\phgr\Documents\l8_angles\src\ias_lib; &&\
-	set LIB=%LIB%"C:\Users\phgr\Documents\l8_angles\src\ias_lib;
-
-$(LIB):
+ias_lib/libl8ang.a:
 	cd ias_lib && make
 
-$(DBLIB):
-	cd ias_lib && make debug
-
-dll: $(LIB)
-	$(CC) $(OPTS) /LD $(SRC) $(LIB) /link /DLL /OUT:..\l8ang.dll
-
-exec: $(LIB)
-	$(CC) $(OPTS) /Fe$(EXEC) $(SRC) $(LIB)
-
-db_exec: $(DBLIB)
-	$(CC) $(DBOPTS) /Fe$(DBEXEC) $(SRC) $(DBLIB)
-
-#------------------------------------------------------------------------------
-# Misc.
-#------------------------------------------------------------------------------
+.c.o: $(INCS) $(LIBS)
+	$(CC) $(OPTS) $(INCS) -c -o $@ $<
 clean:
-	rm -f *.obj *.exe *.pdb *.ilk & \
-	rm ..\l8ang.dll & \
-	cd ias_lib && make clean
-
+	/bin/rm -f *.o
