@@ -11,7 +11,7 @@ dependencies = ["numpy>=2.0"]
 
 [tool.cibuildwheel]
 build = "cp*"
-skip = "*-win* *-musllinux*"
+skip = "*-win* *-musllinux* cp315-* cp315t-*"  # Exclude Windows and Alpine/musl Linux (leaving only macOS and manylinux), and skip CPython 3.15 because it is not released yet"
 manylinux-x86_64-image = "manylinux_2_28"
 manylinux-aarch64-image = "manylinux_2_28"
 test-requires = "pytest"
