@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "Cython>=3.0", "numpy>=2.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "l8angles"
+version = "1.0.0"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["numpy>=2.0"]
+
+[tool.cibuildwheel]
+build = "cp*"
+skip = "*-win* *-musllinux*"
+test-requires = "pytest"
+test-command = "python -c \"import l8angles\""
+
+[tool.cibuildwheel.linux]
+archs = ["x86_64", "aarch64"]
+
+[tool.cibuildwheel.macos]
+archs = ["x86_64", "arm64"]

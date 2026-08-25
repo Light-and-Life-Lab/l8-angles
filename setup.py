@@ -1,15 +1,21 @@
-from setuptools import setup
-from setuptools.extension import Extension
-from Cython.Build import cythonize
-import numpy
+from glob import glob
 
-extensions = [
-    Extension("l8angles", ["l8angles.pyx"],
-              include_dirs = ["src", "src/ias_lib", numpy.get_include()],
-              libraries=["l8_angles"])
+import numpy
+from setuptools import Extension, setup
+
+c_sources = sorted(glob("src/ias_lib/*.c")) + [
+    "src/l8_angles.c",
+    "src/angles_api.c",
 ]
 
 setup(
-    name= 'l8angles',
-    ext_modules = cythonize(extensions),
+    ext_modules=[
+        Extension(
+            name="l8angles",
+            sources=["l8angles.pyx", *c_sources],
+            include_dirs=["src", "src/ias_lib", numpy.get_include()],
+            extra_compile_args=["-O2"],
+            define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
+        ),
+    ],
 )

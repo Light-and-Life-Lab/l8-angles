@@ -1,3 +1,4 @@
+# cython: language_level=3, boundscheck=False, initializedcheck=False, cdivision=True, embedsignature=True
 import os.path
 
 import numpy as np
