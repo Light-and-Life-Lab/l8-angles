@@ -1,9 +1,4 @@
-/* IAS Library Includes */
-#include "ias_logging.h"
-#include "ias_angle_gen_distro.h"  
-
-/* Local Includes */
-#include "l8_angles.h"
+#include "angles_api.h"
 
 /*******************************************************************************
 Name: calculate_angles
