@@ -5,6 +5,7 @@ from setuptools import Extension, setup
 
 c_sources = sorted(glob("src/ias_lib/*.c")) + [
     "src/l8_angles.c",
+    "src/angles_api.c",
 ]
 
 setup(
