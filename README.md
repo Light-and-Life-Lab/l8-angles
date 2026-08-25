@@ -30,7 +30,7 @@ The `cp3XX` in the filename should match your major/minor version (e.g. Python 3
 
 #### 2. Install directly from the release URL
 
-Right-click the appropriate file on the [Releases page](https://github.com/Light-and-Life-Lab/Atmospheric_Gas_Correction_Library/releases)](https://github.com/Light-and-Life-Lab/l8-angles/releases) to copy its link, then run the following from the terminal:
+Right-click the appropriate file on the [Releases page](https://github.com/Light-and-Life-Lab/l8-angles/releases) to copy its link, then run the following from the terminal:
 
 ```bash
 pip install <paste-the-wheel-url-here>
