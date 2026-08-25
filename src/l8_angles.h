@@ -4,10 +4,12 @@
 /* Standard Library Includes */
 #ifndef _WIN32
 #include <limits.h>
-#define PATHMAX PATH_MAX
+#define PATHMAX 4096
+#define PATH_MAX 4096
 #else
 #include <stdlib.h>
-#define PATHMAX _MAX_PATH
+#define PATHMAX 4096 
+#define _MAX_PATH 4096
 #endif
 
 /* IAS Library Includes */    
