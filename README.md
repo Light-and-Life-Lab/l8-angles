@@ -33,14 +33,14 @@ The `cp3XX` in the filename should match your major/minor version (e.g. Python 3
 Right-click the appropriate file on the [Releases page](https://github.com/Light-and-Life-Lab/l8-angles/releases) to copy its link, then run the following from the terminal:
 
 ```bash
-`python -m pip install <paste-the-wheel-url-here>`
+python -m pip install <paste-the-wheel-url-here>
 
 ```
 
 For example:
 
 ```bash
-`python -m pip install https://github.com/Light-and-Life-Lab/l8-angles/releases/download/v1.0.0/l8angles-1.0.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl`
+python -m pip install https://github.com/Light-and-Life-Lab/l8-angles/releases/download/v1.0.0/l8angles-1.0.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
 
 ```
 
